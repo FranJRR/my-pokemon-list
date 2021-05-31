@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 
 import Item from './Item';
+import Details from './Details';
+import Info from './Info';
 
 export default function Search() {
   const [input, setInput] = useState('');
@@ -14,10 +16,10 @@ export default function Search() {
 
     const getPoke = async () => {
       const url = `https://pokeapi.co/api/v2/pokemon/${input}/`;
-      /*const response = await fetch(url);
+      const response = await fetch(url);
       const result = await response.json();
-      console.log(JSON.stringify(result, null, 2));*/
-      setPokemon({ ...pokemon, name: input, url });
+      console.log(JSON.stringify(result, null, 2));
+      setPokemon({ ...pokemon, ...result, name: input, url });
     };
 
     getPoke();
@@ -49,7 +51,7 @@ export default function Search() {
           </Col>
         </Form.Row>
       </Form>
-      {pokemon.name && <Item name={pokemon.name} url={pokemon.url} />}
+      {pokemon.name && <Info pokemon={pokemon} />}
     </>
   );
 }
