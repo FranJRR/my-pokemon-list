@@ -22,7 +22,7 @@ export default function Details(props) {
   return (
     <>
       <Button variant="primary" onClick={getPokemon}>
-        Ver detalle
+        Ver Shiny
       </Button>
 
       {pokemon && (
@@ -31,8 +31,8 @@ export default function Details(props) {
             <Modal.Title>{pokemon.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src={pokemon.sprites.front_default} />
-            <img src={pokemon.sprites.back_default} />
+            <img src={pokemon.sprites.front_shiny} />
+            <img src={pokemon.sprites.back_shiny} />
             <ul>
               {pokemon.types.map(({ type }) => {
                 return <li>{type.name}</li>;
@@ -45,7 +45,6 @@ export default function Details(props) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            
           </Modal.Footer>
         </Modal>
       )}

@@ -25,12 +25,20 @@ export default function List() {
   return (
     <>
       <h3>Estas en la página {page}</h3>
-      <Button variant="secondary" onClick={() => setPage(page - 1)}>
-        Anterior
-      </Button>
-      <Button variant="secondary" onClick={() => setPage(page + 1)}>
-        Siguiente
-      </Button>
+        <Button
+          className="ml-2"
+          variant="danger"
+          onClick={() => (page > 0 ? setPage(page - 1) : setPage(0))}
+        >
+          anterior
+        </Button>
+        <Button
+          className="mr-2"
+          variant="danger"
+          onClick={() => setPage(page + 1)}
+        >
+          siguiente
+        </Button>
       <div className="container">
         {items.map(({ name, url }) => {
           return <Item name={name} url={url} />;
