@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 export default function Details(props) {
   const [show, setShow] = useState(false);
   const [pokemon, setPokemon] = useState();
+  const [shiny, setShiny] = useState(false);
 
   const handleClose = () => setShow(false);
 
@@ -19,6 +20,10 @@ export default function Details(props) {
     fetchData();
   };
 
+  const toggleShiny = () => {
+    setShiny(!shiny);
+  };
+
   return (
     <>
       <Button variant="primary" onClick={getPokemon}>
@@ -31,8 +36,17 @@ export default function Details(props) {
             <Modal.Title>{pokemon.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src={pokemon.sprites.front_default} />
-            <img src={pokemon.sprites.back_default} />
+            {shiny ? (
+              <>
+                <img src={pokemon.sprites.front_shiny} />
+                <img src={pokemon.sprites.back_shiny} />
+              </>
+            ) : (
+              <>
+                <img src={pokemon.sprites.front_default} />
+                <img src={pokemon.sprites.back_default} />
+              </>
+            )}
             <ul>
               {pokemon.types.map(({ type }) => {
                 return <li>{type.name}</li>;
@@ -42,10 +56,12 @@ export default function Details(props) {
             <p>{pokemon.weight / 10} kg</p>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="link" onClick={toggleShiny}>
+              {shiny ? 'Normal' : 'Shiny'}
+            </Button>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            
           </Modal.Footer>
         </Modal>
       )}
