@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, ButtonGroup, ToggleButton } from 'react-bootstrap';
 
 export default function Details(props) {
   const [show, setShow] = useState(false);
   const [pokemon, setPokemon] = useState();
   const [shiny, setShiny] = useState(false);
+  const [female, setFemale] = useState(false);
 
   const handleClose = () => setShow(false);
 
@@ -24,6 +25,16 @@ export default function Details(props) {
     setShiny(!shiny);
   };
 
+  const toggleGender = e => {
+    setFemale(e.currentTarget.value === 'true');
+    console.log('Gender', e.currentTarget.value === 'true');
+  };
+
+  const radios = [
+    { name: '🍌', value: false, variant: 'primary' },
+    { name: '🌰', value: true, variant: 'danger' }
+  ];
+
   return (
     <>
       <Button variant="primary" onClick={getPokemon}>
@@ -37,9 +48,21 @@ export default function Details(props) {
           </Modal.Header>
           <Modal.Body>
             {shiny ? (
+              female && pokemon.sprites.front_shiny_female ? (
+                <>
+                  <img src={pokemon.sprites.front_shiny_female} />
+                  <img src={pokemon.sprites.back_shiny_female} />
+                </>
+              ) : (
+                <>
+                  <img src={pokemon.sprites.front_shiny} />
+                  <img src={pokemon.sprites.back_shiny} />
+                </>
+              )
+            ) : female && pokemon.sprites.front_female ? (
               <>
-                <img src={pokemon.sprites.front_shiny} />
-                <img src={pokemon.sprites.back_shiny} />
+                <img src={pokemon.sprites.front_female} />
+                <img src={pokemon.sprites.back_female} />
               </>
             ) : (
               <>
@@ -56,6 +79,26 @@ export default function Details(props) {
             <p>{pokemon.weight / 10} kg</p>
           </Modal.Body>
           <Modal.Footer>
+            <ButtonGroup toggle>
+              {radios.map(
+                (radio, idx) =>
+                  (!radio.value ||
+                    (radio.value &&
+                      (pokemon.sprites.front_female ||
+                        pokemon.sprites.front_shiny_female))) && (
+                    <ToggleButton
+                      key={idx}
+                      type="radio"
+                      variant={radio.variant}
+                      value={radio.value}
+                      checked={female === radio.value}
+                      onChange={e => toggleGender(e)}
+                    >
+                      {radio.name}
+                    </ToggleButton>
+                  )
+              )}
+            </ButtonGroup>
             <Button variant="link" onClick={toggleShiny}>
               {shiny ? 'Normal' : 'Shiny'}
             </Button>
