@@ -13,7 +13,7 @@ export default function Details(props) {
     const fetchData = async () => {
       const response = await fetch(url);
       const result = await response.json();
-      console.log('Result:', JSON.stringify(result, null, 2));
+      //console.log('Result:', JSON.stringify(result, null, 2));
       setPokemon(result);
       setShow(true);
     };

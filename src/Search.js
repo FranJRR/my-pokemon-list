@@ -12,13 +12,13 @@ export default function Search() {
 
   const onFormSubmit = e => {
     e.preventDefault();
-    console.log(input);
+    //console.log(input);
 
     const getPoke = async () => {
       const url = `https://pokeapi.co/api/v2/pokemon/${input}/`;
       const response = await fetch(url);
       const result = await response.json();
-      console.log(JSON.stringify(result, null, 2));
+      //console.log(JSON.stringify(result, null, 2));
       setPokemon({ ...pokemon, ...result, name: input, url });
     };
 
@@ -43,7 +43,7 @@ export default function Search() {
             <Button
               type="submit"
               onClick={() => {
-                console.log();
+                console.log('sent');
               }}
             >
               Submit

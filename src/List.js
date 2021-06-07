@@ -16,7 +16,7 @@ export default function List() {
       //const result = await fetch(url).then(r => r.json());
       const response = await fetch(url);
       const result = await response.json();
-      console.log(JSON.stringify(result.results, null, 2));
+     //console.log(JSON.stringify(result.results, null, 2));
       setItems(result.results);
     };
     getItems();
@@ -25,26 +25,26 @@ export default function List() {
   return (
     <>
       <h3>Estas en la página {page}</h3>
-        <Button
-          className="ml-2"
-          variant="danger"
-          onClick={() => (page > 0 ? setPage(page - 1) : setPage(0))}
-        >
-          anterior
-        </Button>
-        <Button
-          className="mr-2"
-          variant="danger"
-          onClick={() => setPage(page + 1)}
-        >
-          siguiente
-        </Button>
+      <Button
+        className="ml-2"
+        variant="danger"
+        onClick={() => (page > 0 ? setPage(page - 1) : setPage(0))}
+      >
+        anterior
+      </Button>
+      <Button
+        className="mr-2"
+        variant="danger"
+        onClick={() => setPage(page + 1)}
+      >
+        siguiente
+      </Button>
       <div className="container">
         {items.map(({ name, url }) => {
           return <Item name={name} url={url} />;
         })}
       </div>
-      <pre>{JSON.stringify(items, null, 2)}</pre>
+      {/*<pre>{JSON.stringify(items, null, 2)}</pre> */}
     </>
   );
 }
