@@ -2,4 +2,4 @@
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/my-pokemon-list-zh1wrp)
 
-[online in vercel](https://my-pokemon-list.vercel.app/)
+[Online in vercel](https://my-pokemon-list.vercel.app/)
