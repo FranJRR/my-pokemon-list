@@ -47,30 +47,30 @@ export default function Details(props) {
             <Modal.Title>{pokemon.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <div style="background-image: url('')">
-            {shiny ? (
-              female && pokemon.sprites.front_shiny_female ? (
+            <div class="pokedex">
+              {shiny ? (
+                female && pokemon.sprites.front_shiny_female ? (
+                  <>
+                    <img src={pokemon.sprites.front_shiny_female} />
+                    <img src={pokemon.sprites.back_shiny_female} />
+                  </>
+                ) : (
+                  <>
+                    <img src={pokemon.sprites.front_shiny} />
+                    <img src={pokemon.sprites.back_shiny} />
+                  </>
+                )
+              ) : female && pokemon.sprites.front_female ? (
                 <>
-                  <img src={pokemon.sprites.front_shiny_female} />
-                  <img src={pokemon.sprites.back_shiny_female} />
+                  <img src={pokemon.sprites.front_female} />
+                  <img src={pokemon.sprites.back_female} />
                 </>
               ) : (
                 <>
-                  <img src={pokemon.sprites.front_shiny} />
-                  <img src={pokemon.sprites.back_shiny} />
+                  <img src={pokemon.sprites.front_default} />
+                  <img src={pokemon.sprites.back_default} />
                 </>
-              )
-            ) : female && pokemon.sprites.front_female ? (
-              <>
-                <img src={pokemon.sprites.front_female} />
-                <img src={pokemon.sprites.back_female} />
-              </>
-            ) : (
-              <>
-                <img src={pokemon.sprites.front_default} />
-                <img src={pokemon.sprites.back_default} />
-              </>
-            )}
+              )}
             </div>
             <ul>
               {pokemon.types.map(({ type }) => {
@@ -101,9 +101,9 @@ export default function Details(props) {
                   )
               )}
             </ButtonGroup>
-            <Button variant="link" onClick={toggleShiny}>
+            <a class="rainbow shiny" onClick={toggleShiny}>
               {shiny ? 'Normal' : 'Shiny'}
-            </Button>
+            </a>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
