@@ -47,7 +47,6 @@ export default function Details(props) {
             <Modal.Title>{pokemon.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div class="pokedex">
               {shiny ? (
                 female && pokemon.sprites.front_shiny_female ? (
                   <>
@@ -71,7 +70,6 @@ export default function Details(props) {
                   <img src={pokemon.sprites.back_default} />
                 </>
               )}
-            </div>
             <ul>
               {pokemon.types.map(({ type }) => {
                 return <li>{type.name}</li>;
